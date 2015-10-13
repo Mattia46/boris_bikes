@@ -5,26 +5,32 @@ require 'docking_station.rb'
 # from a spec subdirectory. (we can indicate through ../lib/name_file.rb)
 
  describe DockingStation do # capitol letter because is a class
+   it 'each instance begins with 20 bikes' do
+     expect(subject.bike_counter.size).to eq 20
+   end
+
    describe '#release_bike' do
      it 'releases a bike' do
        bike = Bike.new
+       subject.release_bike
        subject.dock(bike)
        expect(subject.release_bike).to eq bike
      end
 
      it 'raises error when no possible bikes to release' do
      # docking_station = subject
-      expect { subject.release_bike }.to raise_error('Sorry, no bikes')
+      ds = DockingStation.new
+      20.times { ds.release_bike }
+      expect { ds.release_bike }.to raise_error('Sorry, no bikes')
       end
    end
 
    describe '#dock' do
      it 'raise an error when full' do
-       bike = Bike.new
-       bike2 = Bike.new # we made twice perche' almeno una bici deve essere dock_ata,
+       # bike = Bike.new
+       # bike2 = Bike.new # we made twice perche' almeno una bici deve essere dock_ata,
                         # altrimenti non puo' essere gia' occupato
-       subject.dock(bike)
-      expect{subject.dock(bike2)}.to raise_error('Sorry, no more docks available')
+      expect{subject.dock(Bike.new)}.to raise_error('Sorry, no more docks available')
      end
    end
 
@@ -42,13 +48,15 @@ require 'docking_station.rb'
 
    it 'docks something' do
      bike = Bike.new
+     subject.release_bike
      expect(subject.dock(bike)).to eq bike
    end
 
-   it 'returns docked bikes' do
+   it 'returns docked bike' do
      bike = Bike.new
+     subject.release_bike
      subject.dock(bike)
-     expect(subject.bike).to eq bike
+     expect(subject.bike_counter[-1]).to eq bike
    end
 
 end
