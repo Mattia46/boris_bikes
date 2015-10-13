@@ -10,6 +10,8 @@ require 'docking_station.rb'
    it 'releases a bike' do
      bike = subject.release_bike
      expect(bike).to be_working
+     # to_be means call working method and see if it's true of false.
+     # aver messo working? e' un modo convenzionale per chiedere se true or false 
    end
 end
 
