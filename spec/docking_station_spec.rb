@@ -18,6 +18,17 @@ require 'docking_station.rb'
       end
    end
 
+   describe '#dock' do
+     it 'raise an error when full' do
+       bike = Bike.new
+       bike2 = Bike.new # we made twice perche' almeno una bici deve essere dock_ata,
+                        # altrimenti non puo' essere gia' occupato
+       subject.dock(bike)
+      expect{subject.dock(bike2)}.to raise_error('Sorry, no more docks available')
+     end
+   end
+
+
    it { is_expected.to respond_to(:release_bike) }
 
    it 'releases a bike' do

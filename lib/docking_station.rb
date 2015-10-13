@@ -13,6 +13,7 @@ class DockingStation
   end
 
   def dock bike
+    fail 'Sorry, no more docks available' while @bike
     @bike = bike
   end
 
