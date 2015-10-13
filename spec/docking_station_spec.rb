@@ -11,7 +11,20 @@ require 'docking_station.rb'
      bike = subject.release_bike
      expect(bike).to be_working
      # to_be means call working method and see if it's true of false.
-     # aver messo working? e' un modo convenzionale per chiedere se true or false 
+     # aver messo working? e' un modo convenzionale per chiedere se true or false
+   end
+
+   it { is_expected.to respond_to(:dock).with(1).argument}
+
+   it 'docks something' do
+     bike = Bike.new
+     expect(subject.dock(bike)).to eq bike
+   end
+
+   it 'returns docked bikes' do
+     bike = Bike.new
+     subject.dock(bike)
+     expect(subject.bike).to eq bike
    end
 end
 
