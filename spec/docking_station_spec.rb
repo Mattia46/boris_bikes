@@ -1,9 +1,23 @@
-require 'docking_station.rb' # we can indicate all the path, if we run the rspec file
+require 'docking_station.rb'
+
+
+ # we can indicate all the path, if we run the rspec file
 # from a spec subdirectory. (we can indicate through ../lib/name_file.rb)
 
  describe DockingStation do # capitol letter because is a class
    it { is_expected.to respond_to(:release_bike) }
- end
+
+   it 'releases a bike' do
+     bike = subject.release_bike
+     expect(bike).to be_working
+   end
+end
+
+
+
+
+
+
 
 
 # describe DockingStation do
